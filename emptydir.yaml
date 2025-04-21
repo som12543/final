@@ -1,0 +1,20 @@
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: empty-dir
+  labels:
+    app: revise
+    env: Dev 
+spec:
+  containers:
+    - name: niginx-container
+      image: nginx
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - mountPath: /data
+          name: empty-dir1
+  volumes:
+    - name: empty-dir1
+      emptyDir: {}
+        

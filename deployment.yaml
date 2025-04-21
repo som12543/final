@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-deployment
+  labels:
+    app: revise
+    env: Dev
+  annotations:
+    kubernetes.io/change-cause: "my-change"
+
+spec:
+  minReadySeconds: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 2 
+  selector:
+    matchLabels:
+      app: revise
+      env: Dev
+  replicas: 1
+  template:
+    metadata:
+      name: my-deployment
+      labels:
+        app: revise
+        env: Dev
+    spec:
+      containers:
+        - name: niginx-container
+          image: nginx:v1
+          ports:
+            - containerPort: 80
+   

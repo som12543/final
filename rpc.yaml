@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: my-replication-controller
+  labels:
+    app: revise
+    env: Dev
+spec:
+  template:
+    metadata:
+      name: my-replicationcontroller
+      labels:
+        app: revise
+        env: Dev
+    spec:
+      containers:
+        - name: web-ui
+          image: nginx
+  replicas: 1
+  selector:
+      app: revise
+      env: Dev

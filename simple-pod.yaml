@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod-2
+  namespace: quo
+  labels:
+    app: revise1
+    env: Dev1
+spec:
+  containers:
+    - name: redis
+      image: redis
+      ports:
+        - containerPort: 80
+      resources:
+        requests:
+          memory: 500mi
+          cpu: 0.5
+          
+      env:
+        - name: "username"
+          value: "abc"
+        - name: "Password"
+          value: "Password"
+  initContainers:
+    - name: in
+      image: nginx
+      args: ["sleep", "30"]
